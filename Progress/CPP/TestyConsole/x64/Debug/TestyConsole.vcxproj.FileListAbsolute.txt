@@ -1,0 +1,4 @@
+C:\Users\arvin\Documents\GitHub\100-days-of-code\Progress\CPP\TestyConsole\x64\Debug\TestyConsole.exe
+C:\Users\arvin\Documents\GitHub\100-days-of-code\Progress\CPP\TestyConsole\x64\Debug\TestyConsole.pdb
+C:\Users\MilliFy\Documents\GitHub\100-days-of-code\Progress\CPP\TestyConsole\x64\Debug\TestyConsole.exe
+C:\Users\MilliFy\Documents\GitHub\100-days-of-code\Progress\CPP\TestyConsole\x64\Debug\TestyConsole.pdb
