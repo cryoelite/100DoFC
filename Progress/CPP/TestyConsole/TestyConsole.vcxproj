@@ -29,6 +29,7 @@
     <ClInclude Include="HCDF.h" />
     <ClInclude Include="HCDF_Current.h" />
     <ClInclude Include="HCDF_Saving.h" />
+    <ClInclude Include="Transact.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

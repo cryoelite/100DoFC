@@ -41,5 +41,8 @@
     <ClInclude Include="HCDF_Current.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Transact.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

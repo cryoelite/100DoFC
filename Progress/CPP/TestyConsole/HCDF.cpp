@@ -1,25 +1,35 @@
 #include "HCDF.h"
 #include<iostream>
 
-HCDF::HCDF(std::string& name, int& mobNo) : name{ name }, mobNo{ mobNo }
+HCDF::HCDF(std::string& name, long int& mobNo) : name{ name }, mobNo{ mobNo }, balance{ 0 }
 {
-	std::cout << __FUNCSIG__ << std::endl;
+	std::cout << "HCDF(&&)" << std::endl;
 }
 
-void HCDF::deposit(int&)
+void HCDF::deposit(float& amount)
 {
+	balance += amount;
+	std::cout << "Deposited HCDF " << amount << std::endl;
 }
 
-float HCDF::withdraw(float&)
+void HCDF::withdraw(float& amount)
 {
-	return 0.0f;
+	balance -= amount;
+	std::cout << "Null txn done" << std::endl;
 }
 
 void HCDF::accumulateInterest()
 {
 }
 
+float HCDF::getBal()
+{
+	return balance;
+}
+
+
+
 HCDF::~HCDF()
 {
-	std::cout << __FUNCSIG__ << std::endl;
+	std::cout << "HCDF_Saving" << std::endl;
 }

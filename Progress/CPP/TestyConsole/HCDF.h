@@ -4,15 +4,17 @@
 class HCDF
 {
 public:
-	static int acNo;
-	float interest, balance;
+	int acno;
+	float  balance;
 	std::string name;
-	int mobNo;
-	HCDF() = delete;
-	HCDF(std::string& name, int& mobNo);
-	virtual void deposit(int&);
-	virtual float withdraw(float&);
+	long int mobNo;
+	HCDF(std::string& name, long int& mobNo);
+	virtual void deposit(float&);
+	virtual void withdraw(float&);
 	virtual void accumulateInterest();
+	float getBal();
+	
 	virtual ~HCDF();
 };
+
 
