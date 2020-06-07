@@ -18,31 +18,5 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HCDF.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HCDF_Saving.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HCDF_Current.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Transact.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="HCDF.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HCDF_Saving.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HCDF_Current.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transact.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

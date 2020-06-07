@@ -1,66 +1,77 @@
-#include<string>
 #include<iostream>
-#include<memory>
+#include<fstream>
+#include<string>
 
-#include"HCDF.h"
-#include"HCDF_Saving.h"
-#include"HCDF_Current.h"
-#include "Transact.h"
+struct getAd
+{
+	long long int p;
+	std::string l;
+};
 
-enum class actype { SAVINGS, CURRENT };
+void writeAd(getAd &g)
+{
+	std::cout << "write text" << std::endl;
+	std::ofstream out;
+	out.open(" datum.txt");
+	out.write((const char*)&g.l, sizeof(g.l));
+	std::cout << "Pos: " << out.tellp() << std::endl;
+	out << "Or not \n";
+	out.close();
+}
 
-int main() {
-	HCDF* h;
-	
-	std::cout << "HCDF Bank" << std::endl;
-	while (true) {
-		std::string name{};
-		long int mobNo{};
-		int temp{};
-		actype act{};
-		std::cout << "Enter your name " << std::endl;
-		std::getline(std::cin, name);
-
-		std::cout << "Enter your mobile no. " << std::endl;
-		std::cin >> mobNo;
-
-
-		std::cout << "Enter your account type \n 0: Savings \n 1. Current " << std::endl;
-		std::cin >> temp;
-		act = static_cast<actype>(temp);
-		if (act == actype::SAVINGS) {
-
-			h = new HCDF_Saving{ name, mobNo };
-		}
-		else {
-			h = new  HCDF_Current{ name, mobNo };
-		}
-		while (true) {
-			float amount{};
-			std::cout << "Account no.: " << h->acno << std::endl;
-			std::cout << "Do you want to 0. withdraw or 1. deposit 2.balance 3.exit \n" << std::endl;
-			std::cin >> temp;
-			if (temp == 2) {
-				std::cout << "Balance:" << h->getBal() << std::endl;
-				continue;
-			}
-			else if (temp == 3) {
-				break;
-			}
-			std::cout << "Enter amount \n" << std::endl;
-			std::cin >> amount;
-			transact(h, temp, amount);
-		}
-		std::cout << "Press1 to continue 2 to exit" << std::endl;
-		std::cin >> temp;
-		if (temp == 2) {
-			break;
-		}
-		else if (temp == 1) {
-			continue;
-		}
-
+void readAd()
+{
+	std::cout << "read text" << std::endl;
+	std::ifstream inp;
+	inp.open("datum.txt", std::ios::in);
+	if (!inp.is_open()) {
+		std::cout << "No such file" << std::endl;
+		return;
 	}
-	std::cout << "Bye Bye" << std::endl;
-	return 0;
+	std::string temp;
+	inp >> temp;
+	std::cout << "temp : " << temp << std::endl;
+	inp.seekg(0);
+	std::getline(inp, temp);
+	std::cout << "temp now:" << temp << std::endl;
+	inp.close();
+
+
+}
+
+void writeBinary(getAd  *g)
+{
+	std::cout << "write binary" << std::endl;
+	std::ofstream out;
+	out.open("binaryFile", std::ios::binary | std::ios::out);
+	out.write((const char*)g , sizeof(getAd));
+	out.close();
+
+}
+
+void readBinary()
+{
+	std::cout << "read binary" << std::endl;
+	getAd g;
+	std::ifstream in;
+	in.open("binaryFile", std::ios::binary | std::ios::in);
+	if (!in.is_open()) {
+		std::cout<<"Failed" << std::endl;
+	}
+	std::string p;
+	in.read((char*)&g, sizeof(getAd));
+	std::cout << " Binna: " << g.p << std::endl;
+
+}
+int main()
+{
+	
+	getAd p;
+	p.p = std::numeric_limits<long long int>::max();
+	p.l = R"bvc(Yala Habibi \n)bvc";
+	writeAd(p);
+	readAd();
+	writeBinary(&p);
+	readBinary();
+	std::cout << "Fin";
 }
