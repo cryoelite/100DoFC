@@ -1,0 +1,2 @@
+C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\x64\Debug\Lol.exe
+C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\x64\Debug\Lol.pdb
