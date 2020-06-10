@@ -1,30 +1,30 @@
 #include<iostream>
+#include<string.h>
 
-template<typename X>
+template<typename Y>
+using PPAP = Y;
 
-X bax(X first, X second)
+void add_stuff()
 {
-	return first + second;
+	std::cout << "The End" << std::endl;
 }
 
-std::string convert(char t)
+template<typename...T, typename X>
+void add_stuff(const X& first, const T&... args)
 {
-	std::string s{ t };
-	return s;
+	std::cout << first ;
+	if (sizeof...(args) != 0)
+		std::cout << " , ";
+	else
+		std::cout << std::endl;
+	add_stuff(args...);
 }
-void doSome(const char* a, const char* b)
-{
-	std::cout << std::strcmp(b,a) << std::endl;
-	return;
-}
+
 int main()
 {
-	const char* c{ "c" };
-	const char* d{ "d" };
-	std::string s{ c };
-	std::string f{ d };
-	std::cout << bax(s, convert(*c)) << std::endl;
-	doSome(c, d);
+	add_stuff(1, "2", 2.3, "hello", 4.0f);
+	PPAP<int> p{ 2 };
+	PPAP<float> s{ 2 };
+	std::cout << typeid(s).name() << std::endl;
 	return 0;
-
 }
