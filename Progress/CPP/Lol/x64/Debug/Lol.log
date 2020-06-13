@@ -1,2 +1,3 @@
 ﻿  main.cpp
+C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(274,24): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
   Lol.vcxproj -> C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\x64\Debug\Lol.exe
