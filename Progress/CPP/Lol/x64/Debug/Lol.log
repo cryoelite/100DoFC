@@ -1,2 +1,2 @@
 ﻿  main.cpp
-  Lol.vcxproj -> C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\x64\Debug\Lol.exe
+C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(22,15): error C7518: fold expressions require at least '/std:c++17'
