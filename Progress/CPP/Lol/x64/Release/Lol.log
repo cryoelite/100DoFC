@@ -1,7 +1,8 @@
 ﻿  main.cpp
+C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(202,17): warning C4129: 'T': unrecognized character escape sequence
   Generating code
-  3 of 12 functions (25.0%) were compiled, the rest were copied from previous compilation.
+  7 of 383 functions ( 1.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Lol.vcxproj -> C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\x64\Release\Lol.exe
