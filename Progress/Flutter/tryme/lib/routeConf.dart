@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RouterConf {
+class ScreenConf {
   static double vArea;
   static double hArea;
   static double blockV;

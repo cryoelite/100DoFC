@@ -1,48 +1,29 @@
-import 'dart:math';
+import 'package:flutter/material.dart';
 
-class Pendulum {
-  int x, y, k, h, r, temp = 0;
-  Pendulum({this.x = 0, this.y = 0, this.h = 0, this.k = 0, this.r = 0}) {
-    x = x - h;
-    y = y - k;
-  }
-  void updater() {
-    switch (temp ~/ r) {
-      case 0:
-        {
-          x += 1;
-          y = calc();
-          break;
-        }
-      case 1:
-        {
-          x -= 1;
-          y = -calc();
-          break;
-        }
-      case 2:
-        {
-          x -= 1;
-          y = -calc();
-          break;
-        }
-      case 3:
-        {
-          x += 1;
-          y = calc();
-          break;
-        }
-    }
-    temp += 1;
-    print(temp);
-    print("$x,$y");
-  }
+class Pendulum extends CustomPainter {
+  @override
+  bool shouldRepaint(CustomPainter _) => true;
 
-  int calc() {
-    final temp = (sqrt(pow(r, 2) - pow(x, 2))).toInt();
-    return temp;
-  }
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint();
+    paint.color = Colors.blueGrey[400];
+    paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = 5.0;
 
-  int get xAxis => this.x;
-  int get yAxis => this.y;
+    var w = size.width;
+    var h = size.height;
+    Path path = Path();
+    path.lineTo(w / (2 * 100 / 135), h / 2);
+    path.lineTo(0, h);
+    path.moveTo(w, 0);
+    path.lineTo(w / (2 * 100 / 65), h / 2);
+    path.lineTo(w, h);
+    path.moveTo(0, 0);
+    path.moveTo(w / 2, h / 2.7);
+    path.lineTo(w / 2, 0);
+    path.moveTo(w / 2, (-h / 2.7) + h);
+    path.lineTo(w / 2, h);
+    path.close();
+    canvas.drawPath(path, paint);
+  }
 }
