@@ -1,6 +1,10 @@
+import 'dart:async';
+
+import 'package:flare_flutter/flare_controls.dart';
 import 'package:flutter/material.dart';
 
-import './Pendulum.dart';
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:tryme/routeConf.dart';
 
 class Homer extends StatefulWidget {
   @override
@@ -8,55 +12,32 @@ class Homer extends StatefulWidget {
 }
 
 class _HomerState extends State<Homer> with SingleTickerProviderStateMixin {
-  AnimationController _animCont;
+  final FlareControls controls = FlareControls();
+
+  Widget thisAnime() {
+    return FlareActor(
+      'lib/spiner.flr',
+      animation: "spin",
+      controller: controls,
+      callback: (_) {
+        controls.play("spin");  
+        Timer.periodic(Duration(seconds: 3), (_) {
+          print("Spin spin");
+          controls.play("spin");
+        });
+      },
+    );
+  }
 
   @override
-  void initState() {
-    super.initState();
-    _animCont =
-        AnimationController(duration: Duration(seconds: 15), vsync: this);
-    _animCont.repeat();
-  }
-
-  void dispose() {
-    _animCont.dispose();
-    super.dispose();
-  }
-
   Widget build(BuildContext context) {
+    ScreenConf().init(context);
     return Scaffold(
-      body: Container(
-        width: 390,
-        height: 800,
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              top: 380,
-              child: RotationTransition(
-                turns: _animCont,
-                alignment: Alignment.center,
-                child: Container(
-                  width: 390,
-                  height: 200,
-                  child: Center(
-                    child: Icon(
-                      Icons.ac_unit,
-                      size: 150,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 380,
-              child: Container(
-                color: Colors.black12,
-                width: 390,
-                height: 200,
-                child: Icon(Icons.access_time),
-              ),
-            ),
-          ],
+      body: SafeArea(
+        child: Container(
+          width: ScreenConf.hArea,
+          height: ScreenConf.vArea,
+          child: thisAnime(),
         ),
       ),
     );
