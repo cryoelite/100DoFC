@@ -1,17 +1,23 @@
+#include "sim.h"
 #include<iostream>
-#include<array>
+#include<memory>
 
-using namespace std;
-template<typename T,int size>
-void SIZE(T arr[size])
+std::ostream & operator <<(std::ostream & arg,Sim &temp)
 {
-	cout << sizeof(arr);
+	arg << temp.getVal();
+	return arg;
 }
-
 
 int main()
 {
-	int arr[]{ 1,2,3 };
-	SIZE<int,3>(arr);
+	using namespace std;
+
+	Sim sk(24);
+	Sim sp(12);
+	Sim als{ std::move(sp) };
+	cout << als << endl;
+
+
+	cout << "Ya" << endl;
 	return 0;
 }
