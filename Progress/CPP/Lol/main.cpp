@@ -1,28 +1,84 @@
 #include<iostream>
 #include<vector>
-#include<algorithm>
 
-using ll=long long;
+
+using ll = long long;
 
 using namespace std;
+
+
+
 int main()
 {
+	vector<vector<string>> board{
+		{".",".",".",".",".",".",".","."},
+		{".",".",".","p",".",".",".","."},
+		{".",".",".","p",".",".",".","."},
+		{"p","p",".","R",".","p","B","."},
+		{".",".",".",".",".",".",".","."},
+		{".",".",".","B",".",".",".","."},
+		{".",".",".","p", ".", ".", ".", "."},
+		{ ".", ".", ".", ".", ".", ".", ".", "." }
+	};
 
-	vector<int> g{ 10,9,8,7 };
-	vector<int> s{ 5,6,7,8 };
+	vector<pair<int, int>> valsP{};
+	vector<pair<int, int>> valsB{};
+	auto begB = valsB.begin();
+	auto endB = valsB.end();
+	pair<int, int> valsR{};
 	int count{};
-	sort(s.begin(), s.end());
-	sort(g.begin(), g.end());
-	int i{}, j{};
-	while (i < g.size() && j < s.size())
+	for (int i{}; i < board.size(); ++i)
+		for (int j{}; j < 8; ++j)
+		{
+			if (board[i][j] == "p")
+				valsP.push_back(make_pair(j, i));
+			if (board[i][j] == "R")
+				valsR = make_pair(j, i);
+			if (board[i][j] == "B")
+				valsB.push_back(make_pair(j, i));
+		}
+	for (int i{}; i < valsP.size(); ++i)
 	{
-		if (g[i] <= s[j])
-		
-			count++,i++;
-		j++;
+		int firstP = valsP[i].first;
+		int secondP = valsP[i].second;
+		if (firstP == valsR.first)
+		{
+			int flag{};
+			for (int j{}; j < valsB.size(); ++j)
+			{
+				cout << valsB[j].first<<" "<<firstP<<"\n";
+				if (valsB[j].first <= firstP &&valsB[j].second==secondP)
+				{
+				
+					flag = 1;
+				}
+			}
+			if (flag == 0)
+			{
+				count++;
+			}
+		}
+		else if (secondP == valsR.second)
+		{
+			int flag{};
+
+			for (int j{}; j < valsB.size(); ++j)
+			{
+				if (valsB[j].second <= secondP &&valsB[j].first==firstP)
+				{
+					cout << "na";
+					flag = 1;
+				}
+			}
+			if (flag == 0)
+				count++;
+
+		}
+
+
 	}
 
 	cout << count;
-	return 0;
 
+	return 0;
 }
