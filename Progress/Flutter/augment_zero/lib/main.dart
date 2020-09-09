@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:augment_zero/FirstRoute/Route_Home.dart';
-
-import 'package:augment_zero/Utility/Class_ScreenConf.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays([]);
+
   runApp(MainApp());
 }
 
 class MainApp extends StatefulWidget {
-
   @override
   _MainAppState createState() => _MainAppState();
 }
