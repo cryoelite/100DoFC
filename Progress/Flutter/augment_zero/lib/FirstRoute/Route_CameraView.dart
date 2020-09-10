@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
+import 'package:flutter/services.dart';
 
-import 'package:augment_zero/Utility/Class_ScreenConf.dart';
+import 'package:augment_zero/Utility/Class_OrientationObserver.dart';
 
 enum CAMSTATE {
   PRESSED,
@@ -16,11 +17,11 @@ class RouteCameraView extends StatefulWidget {
   _RouteCameraViewState createState() => _RouteCameraViewState();
 }
 
-class _RouteCameraViewState extends State<RouteCameraView> {
-  final double minWidth = ClassScreenConf.minWidth;
-  final double maxWidth = ClassScreenConf.maxWidth;
-  final double maxHeight = ClassScreenConf.maxHeight;
-  final double minHeight = ClassScreenConf.minHeight;
+class _RouteCameraViewState extends State<RouteCameraView>
+    with ClassOrientationObserver {
+  _RouteCameraViewState() {
+    setConstraints();
+  }
   ArCoreController arCoreController;
 
   void onArCoreViewCreated(ArCoreController tempController) {
@@ -42,13 +43,41 @@ class _RouteCameraViewState extends State<RouteCameraView> {
   }
 
   Widget build(BuildContext context) {
+    return StreamBuilder<ORIENTATION>(
+      stream: accelStreamClr.stream,
+      builder: (context, AsyncSnapshot<ORIENTATION> snapshot) {
+        if (snapshot.data == ORIENTATION.PORTRAIT) {
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+          setConstraints();
+
+          return buildPortrait();
+        } else {
+          SystemChrome.setPreferredOrientations(
+              [DeviceOrientation.landscapeLeft]);
+          setConstraints();
+
+          return buildLandScape();
+        }
+      },
+    );
+  }
+
+  Widget buildPortrait() {
     return Container(
       width: maxWidth,
-      height: maxHeight - (minHeight * 28),
-      child: Container(
-        child: ArCoreView(
-          onArCoreViewCreated: onArCoreViewCreated,
-        ),
+      height: maxHeight - (minHeight * 23),
+      child: ArCoreView(
+        onArCoreViewCreated: onArCoreViewCreated,
+      ),
+    );
+  }
+
+  Widget buildLandScape() {
+    return Container(
+      width: maxHeight,
+      height: maxWidth - (minWidth * 23),
+      child: ArCoreView(
+        onArCoreViewCreated: onArCoreViewCreated,
       ),
     );
   }
