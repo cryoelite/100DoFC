@@ -8,26 +8,48 @@ enum CAMSTATE {
   NONE,
 }
 
+enum SHAPE { SPHERE, CUBE, CYLINDER }
+
 class RouteCameraView extends StatefulWidget {
-  final String materialColor;
-  final String shape;
   final Stream<CAMSTATE> cameraButtonStream;
-  RouteCameraView(this.cameraButtonStream, this.materialColor, this.shape,
-      {Key key})
-      : super(key: key);
+  RouteCameraView(this.cameraButtonStream, {Key key}) : super(key: key);
   @override
-  _RouteCameraViewState createState() => _RouteCameraViewState();
+  RouteCameraViewState createState() => RouteCameraViewState();
 }
 
-class _RouteCameraViewState extends State<RouteCameraView>
+class RouteCameraViewState extends State<RouteCameraView>
     with ClassOrientationObserver {
-  _RouteCameraViewState() {
+  RouteCameraViewState() {
     setConstraints();
   }
   ArCoreController arCoreController;
 
   void onArCoreViewCreated(ArCoreController tempController) {
     arCoreController = tempController;
+  }
+
+  void addItem(SHAPE tempShape, Color color) {
+    switch (tempShape) {
+      case SHAPE.SPHERE:
+        {
+          addSphere(color);
+          break;
+        }
+      case SHAPE.CYLINDER:
+        {
+          addCube(color);
+          break;
+        }
+      case SHAPE.CUBE:
+        {
+          addCylinder(color);
+          break;
+        }
+      default:
+        {
+          break;
+        }
+    }
   }
 
   void captureShot() {
@@ -50,10 +72,33 @@ class _RouteCameraViewState extends State<RouteCameraView>
     super.dispose();
   }
 
+  void addCube(Color color) {}
+
+  void addCylinder(Color color) {}
+
+  void addSphere(Color color) {
+    final material = ArCoreMaterial(
+      color: color,
+    );
+    final sphere = ArCoreSphere(
+      materials: [material],
+      radius: 10,
+    );
+    final node = ArCoreNode(
+      shape: sphere,
+      position: vector.Vector3(0, 0, -1.5),
+    );
+    arCoreController.addArCoreNode(node);
+  }
+
   Widget build(BuildContext context) {
     return Container(
       width: maxWidth,
       height: maxHeight - (minHeight * 23),
+      child: ArCoreView(
+        onArCoreViewCreated: onArCoreViewCreated,
+        type: ArCoreViewType.STANDARDVIEW,
+      ),
     );
   }
 }

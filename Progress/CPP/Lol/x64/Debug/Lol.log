@@ -1,3 +1,4 @@
 ﻿  main.cpp
-C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(7,15): error C2653: 'stdd': is not a class or namespace name
-C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(7,8): error C3861: 'getline': identifier not found
+C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(40,26): error C2385: ambiguous access of 'a'
+C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(40,26): message : could be the 'a' in base 'A'
+C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(40,26): message : or could be the 'a' in base 'A'

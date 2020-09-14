@@ -24,14 +24,23 @@ class RouteHome extends StatefulWidget {
 }
 
 class _RouteHomeState extends State<RouteHome> with ClassOrientationObserver {
-  String shape = "Cube";
-  String materialColor = "Red";
+  final GlobalKey<RouteCameraViewState> keyCamera =
+      GlobalKey<RouteCameraViewState>();
+  RouteCameraView routeCameraView;
+  SHAPE shape = SHAPE.SPHERE;
+  Color materialColor = Colors.red;
   StreamController<CAMSTATE> cameraButton = StreamController<CAMSTATE>();
   FLASHSTATUS flashstatus = FLASHSTATUS.OFF;
   List<DropdownMenuItem<dynamic>> menuItems = [];
   List<DropdownMenuItem<dynamic>> shapeItems = [];
   List<DropdownMenuItem<dynamic>> materialColorItems = [];
+
   _RouteHomeState() {
+    routeCameraView = RouteCameraView(
+      cameraButton.stream,
+      key: keyCamera,
+    );
+
     setConstraints();
     menuItems = [
       DropdownMenuItem<DropdownButton>(
@@ -39,7 +48,7 @@ class _RouteHomeState extends State<RouteHome> with ClassOrientationObserver {
           items: shapeItems,
           hint: Text("Shape"),
           onChanged: (value) {
-            shape = value.toString();
+            shape = value;
           },
           value: shape,
         ),
@@ -55,21 +64,21 @@ class _RouteHomeState extends State<RouteHome> with ClassOrientationObserver {
       DropdownMenuItem(
         child: Text("Cube"),
         onTap: () {
-          shape = "Cube";
+          shape = SHAPE.CUBE;
         },
         value: shape,
       ),
       DropdownMenuItem(
         child: Text("Sphere"),
         onTap: () {
-          shape = "Sphere";
+          shape = SHAPE.SPHERE;
         },
         value: shape,
       ),
       DropdownMenuItem(
         child: Text("Cylinder"),
         onTap: () {
-          shape = "Cylinder";
+          shape = SHAPE.CYLINDER;
         },
         value: shape,
       ),
@@ -79,7 +88,7 @@ class _RouteHomeState extends State<RouteHome> with ClassOrientationObserver {
       DropdownMenuItem(
         child: Text("Blue"),
         onTap: () {
-          materialColor = "Blue";
+          materialColor = Colors.blue;
         },
         value: materialColor,
       ),
@@ -88,7 +97,7 @@ class _RouteHomeState extends State<RouteHome> with ClassOrientationObserver {
       DropdownMenuItem(
         child: Text("Red"),
         onTap: () {
-          materialColor = "Red";
+          materialColor = Colors.red;
         },
         value: materialColor,
       ),
@@ -97,7 +106,7 @@ class _RouteHomeState extends State<RouteHome> with ClassOrientationObserver {
       DropdownMenuItem(
         child: Text("Yellow"),
         onTap: () {
-          materialColor = "Yellow";
+          materialColor = Colors.yellow;
         },
         value: materialColor,
       ),
@@ -106,7 +115,7 @@ class _RouteHomeState extends State<RouteHome> with ClassOrientationObserver {
       DropdownMenuItem(
         child: Text("Green"),
         onTap: () {
-          materialColor = "Green";
+          materialColor = Colors.green;
         },
         value: materialColor,
       ),
@@ -166,11 +175,7 @@ class _RouteHomeState extends State<RouteHome> with ClassOrientationObserver {
 
   Widget buildcameraWindow() {
     print(shapeItems.length);
-    return RouteCameraView(
-      cameraButton.stream,
-      materialColor,
-      shape,
-    );
+    return routeCameraView;
   }
 
   Stack buildLandScape() {
@@ -281,6 +286,7 @@ class _RouteHomeState extends State<RouteHome> with ClassOrientationObserver {
           child: Material(
             color: Colors.transparent,
             child: DropdownButton(
+              isDense: true,
               items: menuItems,
               icon: Icon(
                 Icons.settings,
