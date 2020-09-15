@@ -1,4 +1,2 @@
 ﻿  main.cpp
-C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(40,26): error C2385: ambiguous access of 'a'
-C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(40,26): message : could be the 'a' in base 'A'
-C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(40,26): message : or could be the 'a' in base 'A'
+  Lol.vcxproj -> C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\x64\Debug\Lol.exe

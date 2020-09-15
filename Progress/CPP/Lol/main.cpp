@@ -2,41 +2,18 @@
 
 
 #include "sim.h"
-
-
-class A {
-public:
-	int a{};
-}
-;
-
-class B : public A{
-public:
-
-		B() {
-			a = 1;
-		}
-	
-	
-};
-
-class C : public A {
-	public:
-		
-		C() {
-			a = 21;
-		}
-};
-
-class D : public B,  public C {
-	public:
-		
-};
+#include<filesystem>
+#include<fstream>
+#include<sstream>
 
 int main()
 {
-	
-	D d;
-	std::cout << "\n" << d.a;
+	using namespace std;
+	filesystem::path source(filesystem::current_path());
+	source /= "HH.txt";
+	ofstream obj{ source,std::ios::binary | std::ios::out };
+	obj.write();
+
+
 	return 0;
 }
