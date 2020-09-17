@@ -6,13 +6,15 @@
 #include<fstream>
 #include<sstream>
 
+
+void name0()
+{
+	std::cout << __FUNCDNAME__;
+}
 int main()
 {
 	using namespace std;
-	filesystem::path source(filesystem::current_path());
-	source /= "HH.txt";
-	ofstream obj{ source,std::ios::binary | std::ios::out };
-	obj.write();
+	name0.operator()();
 
 
 	return 0;

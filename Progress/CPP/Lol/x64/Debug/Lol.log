@@ -1,2 +1,2 @@
 ﻿  main.cpp
-  Lol.vcxproj -> C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\x64\Debug\Lol.exe
+C:\Users\arvin\Documents\GitHub\100DoFC\Progress\CPP\Lol\main.cpp(17,18): error C2228: left of '.()' must have class/struct/union
