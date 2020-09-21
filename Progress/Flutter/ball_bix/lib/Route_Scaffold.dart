@@ -13,23 +13,26 @@ class RouteScaffold extends StatefulWidget {
 }
 
 class _RouteScaffoldState extends State<RouteScaffold> {
+  RouteHomePage routeHomePage = RouteHomePage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           width: ScreenConf.maxWidth,
           height: ScreenConf.maxHeight,
           decoration: BoxDecoration(
-            
             border: Border.all(
-              width: ScreenConf.minWidth * 5  ,
+              width: ScreenConf.minWidth * 5,
               color: Theme.of(context).primaryColor,
             ),
           ),
-          child: RouteHomePage(),
+          child: Stack(
+            children: [
+              routeHomePage,
+            ],
+          ),
         ),
       ),
     );

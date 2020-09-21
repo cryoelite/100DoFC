@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import './Class_BallGenerator.dart';
@@ -12,19 +13,29 @@ class _RouteHomePageState extends State<RouteHomePage> {
   bool isBallGenerated = false;
   ClassBallGenerator ball;
 
+  List<CustomPaint> paintObjects = [];
+
+  void addPaintObject(Offset details) {
+    ClassBallGenerator ball = ClassBallGenerator(details);
+    paintObjects.add(
+      CustomPaint(
+        painter: ball,
+      ),
+    );
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
         onPanStart: (details) {
-          ball = ClassBallGenerator(details.localPosition);
           isBallGenerated = true;
-          setState(() {});
+          addPaintObject(details.localPosition);
           print("Touch made");
         },
         onPanUpdate: (details) {
-          ball=ClassBallGenerator(details.localPosition);
-          setState(() {});
+          addPaintObject(details.localPosition);
           print("${details.localPosition.toString()}");
         },
         child: Container(
@@ -32,8 +43,8 @@ class _RouteHomePageState extends State<RouteHomePage> {
           width: ScreenConf.maxWidth,
           height: ScreenConf.maxHeight,
           child: isBallGenerated
-              ? CustomPaint(
-                  painter: ball,
+              ? Stack(
+                  children: paintObjects,
                 )
               : Container(),
         ),

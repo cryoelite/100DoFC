@@ -9,7 +9,6 @@ void main() {
 }
 
 class BallBix extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
@@ -18,11 +17,10 @@ class BallBix extends StatelessWidget {
         primaryColor: Colors.orange[200],
       ),
       debugShowCheckedModeBanner: false,
-      
       initialRoute: '/',
       routes: {
-        '/': (context)=> RouteScaffold(context),
-        '/RouteHomePage': (_)=> RouteHomePage(),
+        '/': (context) => RouteScaffold(context),
+        '/RouteHomePage': (_) => RouteHomePage(),
       },
     );
   }

@@ -8,13 +8,13 @@ class ClassBallGenerator extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
       ..color = Colors.black
-      ..style = PaintingStyle.stroke
+      ..style = PaintingStyle.fill
       ..strokeWidth = 3;
 
     canvas.drawCircle(sigma, 10, paint);
   }
 
-  bool shouldRepaint(_) => true;
+  bool shouldRepaint(_) => false;
 
   void update(Offset temp) => sigma = temp;
 }
